@@ -1,0 +1,12 @@
+Project's architecture and code was revised, entities was concluded and started to write use cases classes.
+
+Warning:
+    - Use cases' layer isn't completed (Need tests, funcionalities and review)
+
+Additioned:
+    - entities: completed with one class who say how data need to be and verify
+    if the dataset obeys the business rules or transform to obey it.
+    - use cases: created method to extract data from API, just temporary in this project.
+
+Revised:
+    - All the project's code and architecture was revised.

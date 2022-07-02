@@ -1,9 +1,7 @@
 import os
 from random import choice
-import sys
-sys.path.insert(0, os.environ.get('SRC_FIGMA_PATH'))
 
-from cryptocurrencyetl import CryptocurrencyEtl
+from webui.gateways.use_cases.transformcrypto import TransformCrypto
 
 crypto = choice(('BTC', 'ETH', 'ADA', 'DOGE', 'XRP'))
 market_curr = choice(('USD', 'BRL', 'CNY', 'EUR', 'GBP'))
