@@ -1,7 +1,7 @@
 import datetime as dt
 import pandas as pd
 
-from .resources.logger_msg import LoggerMsg
+from domain.resources.logger_msg import LoggerMsg
 
 class Currencies():
 	

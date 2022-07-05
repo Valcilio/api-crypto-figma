@@ -1,8 +1,8 @@
 import datetime as dt
 import pandas as pd
 
-from .entities.currencies import Currencies
-from .entities.resources.logger_msg import LoggerMsg
+from domain.entities.currencies import Currencies
+from domain.resources.logger_msg import LoggerMsg
 
 class TransformCrypto(Currencies):
 

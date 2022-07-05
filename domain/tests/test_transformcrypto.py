@@ -1,10 +1,9 @@
 import os
 import pandas as pd
 from random import choice
+from domain.use_cases.transformcrypto import TransformCrypto
 
-from webui.gateways.use_cases.transformcrypto import TransformCrypto
-
-df_test = pd.read_csv('test_data/test_df.csv')
+df_test = pd.read_csv('domain/tests/test_data/test_df.csv')
 
 crypto = choice(('BTC', 'ETH', 'ADA', 'DOGE', 'XRP'))
 market_curr = choice(('USD', 'BRL', 'CNY', 'EUR', 'GBP'))
@@ -52,7 +51,7 @@ def test_datetimeindex():
 def test_run():
     '''Testing '''
 
-    df_test = pd.read_csv('test_data/test_df.csv')
+    df_test = pd.read_csv('domain/tests/test_data/test_df.csv')
     df_test.columns = orig_cols
     df_test['dirt'] = 1
 

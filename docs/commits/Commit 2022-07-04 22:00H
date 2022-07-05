@@ -1,0 +1,13 @@
+Project's architecture revised, use cases' layer finished and gateways' layer started.
+
+Warning:
+    - Gateways' layer is in development.
+    - No unit tests to gateways layer yet.
+    - domain/gateways/apigetdata.py: method "_filter_date" need to be moved to use_cases.
+
+Additioned:
+    - domain/tests/test_sarimax.py: created to test the class of sarimax.
+    - domain/gateways/apigetdata.py: new method to call all data transformations from use cases. 
+
+Revised:
+    - All the project's architecture was revised.

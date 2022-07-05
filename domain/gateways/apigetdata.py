@@ -1,10 +1,10 @@
 from datetime import datetime
 import pandas as pd
 
-from use_cases.entities.resources.logger_msg import LoggerMsg
-from use_cases.transformcrypto import TransformCrypto
+from domain.resources.logger_msg import LoggerMsg
+from domain.use_cases.transformcrypto import TransformCrypto
 
-class CryptocurrencyEtl():
+class APIGetData():
 
     def __init__(self, api_key: str, crypto: str, market_curr: str,
                  start_date: str, end_date: str = datetime.now().strftime('%Y-%m-%d'), 
@@ -20,7 +20,11 @@ class CryptocurrencyEtl():
         self.orig_cols = ['timestamp', f'open ({self.market_curr})', f'high ({self.market_curr})', 
                           f'low ({self.market_curr})', f'close ({self.market_curr})', 'volume']
 
-        self.logger = LoggerMsg(file_name='Extract')
+        self.logger = LoggerMsg(file_name='APIGetData')
+
+    def _filter_date(self, **kwargs): # this method don't deserve here!
+        self.df = self.df[(self.df[self.date_col] >= self.start_date)
+                         & (self.df[self.date_col] <= self.end_date)]
 
     def _extract_cryptocurrency_data(self, activate_errors_msg = True, **kwargs):
         '''Extract the cryptocurrency historical data from the API selected and
@@ -34,8 +38,16 @@ class CryptocurrencyEtl():
             self.logger.warning_limit_rows(df=self.df, name=f'Alpha Vantage API', limit=1000)
             self.logger.error_limit_cols(df=self.df, name=f'Alpha Vantage API', limit=11)
 
+        self._filter_date()
+
         return self.df
 
-    def _filter_date(self, **kwargs):
-        self.df = self.df[(self.df[self.date_col] >= self.start_date)
-                         & (self.df[self.date_col] <= self.end_date)]
+    def run_transformations(self, **kwargs):
+
+        self._extract_cryptocurrency_data()
+        trans_crypto_data = TransformCrypto(df=self.df, date_col='timestamp', 
+                                            crypto=self.crypto, market_curr=self.market_curr)
+
+        trans_crypto_data._run_transformations()
+
+        return None
