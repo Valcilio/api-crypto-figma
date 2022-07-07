@@ -1,10 +1,11 @@
+import pandas as pd
 from pandas.testing import assert_frame_equal
 import pickle
 
 from domain.use_cases.sarimax import Sarimax
 
-df_test_nopred = pickle.load(open('domain/tests/test_data/test_csv_no_pred.pkl', 'rb'))
-df_test_pred = pickle.load(open('domain/tests/test_data/test_csv_with_pred.pkl', 'rb'))
+df_test_nopred = pickle.load(open('tests/test_data/test_csv_no_pred.pkl', 'rb'))
+df_test_pred = pickle.load(open('tests/test_data/test_csv_with_pred.pkl', 'rb'))
 
 ts_model = Sarimax(df=df_test_nopred)
 model = ts_model.fit_sarimax()

@@ -1,18 +1,21 @@
-import datetime as dt
+from datetime import datetime
 import pandas as pd
 
 from domain.entities.currencies import Currencies
-from domain.resources.logger_msg import LoggerMsg
+from resources.logger_msg import LoggerMsg
 
 class TransformCrypto(Currencies):
 
     def __init__(self, date_col: str, crypto: str, df: pd.DataFrame, 
-                 market_curr: str, **kwargs):
+                 market_curr: str, start_date: str, 
+                 end_date: str = datetime.now().strftime('%Y-%m-%d'), **kwargs):
 
         super().__init__(df=df, crypto_curr=crypto, market_curr=market_curr)
 
         self.df = df
         self.date_col = date_col
+        self.start_date = start_date
+        self.end_date = end_date
         self.crypto_market_curr = self.unify_crypto_market_curr()
         self.crypto = self.crypto_market_curr['crypto_curr']
         self.market_curr = self.crypto_market_curr['market_curr']
@@ -21,18 +24,30 @@ class TransformCrypto(Currencies):
 
         self.logger = LoggerMsg(file_name='Transform')
 
+    def run(self, **kwargs):
+        self._run_transformations()
+        self._run_business_rules()
+        self._run_index_transformations()
+
+        return self.df
+
     def _run_transformations(self, **kwargs):
         self._clean_cryptocurrency_data()
         self._rename_columns()
+        self._filter_date()
 
     def _run_business_rules(self, **kwargs):
         self.adjust_dtypes()
         self.check_columns()
 
-    def run(self, **kwargs):
-        self._run_transformations()
-        self._run_business_rules()
+    def _run_index_transformations(self, **kwargs):
         self._change_to_datetime_index()
+
+    def _filter_date(self, **kwargs):
+        '''Filter dataframe by date passed'''
+
+        self.df = self.df[(self.df[self.date_col] >= self.start_date)
+                         & (self.df[self.date_col] <= self.end_date)]
 
         return self.df
 
@@ -50,10 +65,8 @@ class TransformCrypto(Currencies):
 
         name_cols = {f'open ({self.market_curr})':'open', f'high ({self.market_curr})':'high', 
                     f'low ({self.market_curr})':'low', f'close ({self.market_curr})':'close'}
-        try:
-            self.df = self.df.rename(columns=name_cols)
-        except:
-            self.logger.generic_error(name='Data Transform')
+
+        self.df = self.df.rename(columns=name_cols)
 
         return self.df
 

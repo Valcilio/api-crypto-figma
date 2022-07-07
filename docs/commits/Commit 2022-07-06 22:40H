@@ -1,0 +1,14 @@
+Project's architecture revised and api to get data finished.
+
+Warning:
+    - Gateways' layer is in development.
+
+Additioned:
+    - domain/tests/test_apigetdata.py: created to test 'domain/gateways/apigetdata.py'.
+    - domain/gateways/apigetdata.py: new methods to transform dataframe extracted.
+    - domain/use_cases/sarimax.py: new method to inferring frequency of the dateindex. 
+
+Revised:
+    - All the project's architecture was revised.
+    - domain/use_cases/transformcrypto.py: reviewed methods to run.
+    - domain/tests/test_transformcrypto.py: reviewed method to test run.

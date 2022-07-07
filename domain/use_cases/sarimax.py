@@ -2,7 +2,7 @@ import pandas as pd
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 import warnings
 
-from domain.resources.logger_msg import LoggerMsg
+from resources.logger_msg import LoggerMsg
 
 class Sarimax():
 
@@ -15,6 +15,7 @@ class Sarimax():
         '''Fit sarimax model'''
 
         warnings.filterwarnings("ignore")
+        self._definy_inferred_freq()
         model=SARIMAX(self.df, order=passed_order, seasonal_order=seas_order, **kwargs)
         self.fitted_model = model.fit(disp=0)
 
@@ -41,3 +42,9 @@ class Sarimax():
         df_with_forecast = pd.concat([self.df, df_forecast], axis=1).rename(columns={'predicted_mean':f'{self.df.name}_forecast'})
         
         return df_with_forecast
+
+    def _definy_inferred_freq(self, **kwargs):
+        '''Inferred frequency definying to modeling'''
+
+        self.df.index = pd.DatetimeIndex(self.df.index.values, 
+                                    freq=self.df.index.inferred_freq)

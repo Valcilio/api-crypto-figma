@@ -3,7 +3,7 @@ import pandas as pd
 
 from domain.entities.currencies import Currencies
 
-df_test = pd.read_csv('domain/tests/test_data/test_df.csv')
+df_test = pd.read_csv('tests/test_data/test_df.csv')
 market_curr = 'BRL'
 crypto_curr = 'ETH'
 run_business_rules = Currencies(df=df_test, market_curr=market_curr, crypto_curr=crypto_curr)

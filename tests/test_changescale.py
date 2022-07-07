@@ -3,7 +3,7 @@ from pandas.testing import assert_frame_equal
 
 from domain.use_cases.changescale import ChangeScale
 
-df_test = pd.read_csv('domain/tests/test_data/test_df.csv')
+df_test = pd.read_csv('tests/test_data/test_df.csv')
 all_methods = ('box-cox', 'yeo-johnson', 'min-max', 'robust-scaler', 'log1p')
 
 def test_rescaling():

@@ -3,7 +3,7 @@ import logging
 from multiprocessing.sharedctypes import Value
 from pandas.core.frame import DataFrame
 
-from domain.resources.context import Context
+from resources.context import Context
 
 class LoggerMsg():
 

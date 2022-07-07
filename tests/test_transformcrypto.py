@@ -1,9 +1,10 @@
 import os
 import pandas as pd
+import pytest
 from random import choice
 from domain.use_cases.transformcrypto import TransformCrypto
 
-df_test = pd.read_csv('domain/tests/test_data/test_df.csv')
+df_test = pd.read_csv('tests/test_data/test_df.csv')
 
 crypto = choice(('BTC', 'ETH', 'ADA', 'DOGE', 'XRP'))
 market_curr = choice(('USD', 'BRL', 'CNY', 'EUR', 'GBP'))
@@ -15,7 +16,19 @@ orig_cols = ['timestamp', f'open ({market_curr})', f'high ({market_curr})',
 df_test.columns = orig_cols
 df_test['dirt'] = 1
 
-trans_crypto = TransformCrypto(df=df_test, date_col='timestamp', crypto=crypto, market_curr=market_curr)
+trans_crypto = TransformCrypto(df=df_test, date_col='timestamp', 
+                            crypto=crypto, start_date='2019-10-09',
+                            end_date='2019-10-10', 
+                            market_curr=market_curr)
+
+def test_filter_date():
+    '''Test if it's filtering correct by date'''
+
+    df = trans_crypto._filter_date()
+    timestamps_df = list(df['timestamp'].unique())
+    timestamps_list = ['2019-10-09', '2019-10-10']
+
+    assert timestamps_list == timestamps_df
 
 def test_clean_cryptocurrency_data():
     '''Test if the data extract has the correct columns shape'''
@@ -51,9 +64,13 @@ def test_datetimeindex():
 def test_run():
     '''Testing '''
 
-    df_test = pd.read_csv('domain/tests/test_data/test_df.csv')
+    df_test = pd.read_csv('tests/test_data/test_df.csv')
     df_test.columns = orig_cols
     df_test['dirt'] = 1
 
-    trans_crypto = TransformCrypto(df=df_test, date_col='timestamp', crypto=crypto, market_curr=market_curr)
+    trans_crypto = TransformCrypto(df=df_test, date_col='timestamp', 
+                                crypto=crypto, start_date='2000-01-01',  
+                                market_curr=market_curr)
     trans_crypto.run()
+
+    return print(df_test)
