@@ -29,7 +29,7 @@ class TransformCrypto(Currencies):
         self._run_business_rules()
         self._run_index_transformations()
 
-        return self.df
+        return None
 
     def _run_transformations(self, **kwargs):
         self._clean_cryptocurrency_data()
