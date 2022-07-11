@@ -1,0 +1,14 @@
+Sarimax's API finalized with tests and main API finalized without tests.
+
+Warning:
+    - Tests of main API need to be refactored.
+
+Additioned:
+    - domain/gateways/apigetsarimax.py: added new methods to rescale and inverse scale 
+                                        data for modeling and analysis.
+    - domain/gateways/mainapi.py: created to unify all classes from API layer.
+    - tests/test_apigetsarimax.py: testing every funcionality of apigetsarimax now.
+    - tests/test_mainapi.py: created but need to be refactored.
+
+Revised:
+    - domain/use_cases/sarimax.py: adjusted some attributes to combine with API.
