@@ -7,7 +7,7 @@ from domain.use_cases.sarimax import Sarimax
 df_test_nopred = pickle.load(open('tests/test_data/test_csv_no_pred.pkl', 'rb'))
 df_test_pred = pickle.load(open('tests/test_data/test_csv_with_pred.pkl', 'rb'))
 
-ts_model = Sarimax(df=df_test_nopred)
+ts_model = Sarimax(df=df_test_nopred, y='log1p_close')
 model = ts_model.fit_sarimax()
 
 def test_forecast_sarimax():

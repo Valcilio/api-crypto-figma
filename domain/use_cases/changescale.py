@@ -7,7 +7,7 @@ class ChangeScale():
 
     def __init__(self, df: pd.DataFrame, y: str, method: str = 'yeo-johnson', **kwargs):
 
-        self.df = df.copy()
+        self.df = pd.DataFrame(df.copy())
         self.method = method
         self.y = y
 
@@ -48,13 +48,13 @@ class ChangeScale():
         warnings.filterwarnings('ignore')
 
         df = self.df
-        col_orig_name = self.y
-        df[f'{col_orig_name}'] = df[y_nt]
+        print(df)
+        df[f'{self.y}'] = df[y_nt]
         df = df.drop(y_nt, axis=1)
 
         if scaler == 'log1p':
-            df[f'{y_nt}_reversed'] = np.expm1(df[f'{col_orig_name}'])
+            df[f'{y_nt}_reversed'] = np.expm1(df[f'{self.y}'])
         else:
-            df[f'{y_nt}_reversed'] = scaler.inverse_transform(df[[f'{col_orig_name}']])
+            df[f'{y_nt}_reversed'] = scaler.inverse_transform(df[[f'{self.y}']])
 
-        return df.drop(col_orig_name, axis=1)
+        return df.drop(self.y, axis=1)

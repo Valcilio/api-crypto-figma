@@ -1,13 +1,16 @@
 import numpy as np
 
-from domain.gateways.apigetdata import APIGetData
+from domain.gateways.mainapi import MainAPI
 
-crypto = 'BTC'
-market_curr = 'USD'
-api_run = APIGetData(crypto=crypto, market_curr=market_curr)
-api_df = api_run.extract_transform_data()
+framework_json = {'crypto': 'BTC', 
+                'market_curr': 'USD', 
+                'run_model': True,
+                'columns': 'close'}
 
-def test_columns():
+api_run = MainAPI(framework_json=framework_json)
+api_df = api_run.get_sarimax_pred()
+
+def test_columns(): # need to be refactored
     '''Test if all columns are in the df'''
 
     columns = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
@@ -15,7 +18,7 @@ def test_columns():
 
     assert columns == api_columns
 
-def testing_dtypes():
+def testing_dtypes(): # need to be refactored
     '''Test if is returning the correct data types on columns'''
 
     api_dtypes_dict = dict(api_df.dtypes)
@@ -29,7 +32,7 @@ def testing_dtypes():
 
     assert api_dtypes_dict == correct_dtypes
 
-def testing_dateindex():
+def testing_dateindex(): # need to be refactored
     '''Test if is returning the dateindex'''
 
     df_test = api_df.copy()

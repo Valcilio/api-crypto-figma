@@ -6,9 +6,10 @@ from resources.logger_msg import LoggerMsg
 
 class Sarimax():
 
-    def __init__(self, df: pd.DataFrame, **kwargs):
+    def __init__(self, df: pd.DataFrame, y: str = 'close', **kwargs):
 
         self.df = df.copy()
+        self.y = y
         self.logger = LoggerMsg('TSModel')
 
     def fit_sarimax(self, passed_order: tuple = (2, 1, 5), seas_order: tuple = (1, 1, 1, 24), **kwargs):
@@ -39,7 +40,8 @@ class Sarimax():
         except:
             self.logger.full_error("Call a 'fit_' method before this or pass a time series fitted model!")
 
-        df_with_forecast = pd.concat([self.df, df_forecast], axis=1).rename(columns={'predicted_mean':f'{self.df.name}_forecast'})
+        df_with_forecast = pd.concat([self.df, df_forecast], axis=1).rename(
+                                            columns={'predicted_mean':f'{self.y}_forecast'})
         
         return df_with_forecast
 
