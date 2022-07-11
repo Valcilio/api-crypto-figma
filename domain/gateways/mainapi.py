@@ -16,6 +16,24 @@ class MainAPI():
         self.old_days = framework_json['old_days']
         self.next_days = framework_json['next_days']
 
+    def run(self, **kwargs):
+
+        if self.run_model:
+            self.full_data()
+        else:
+            self.get_data()
+
+        return self.df
+
+    def full_data(self, **kwargs):
+        '''Return all data'''
+
+        self.get_sarimax_pred()
+        self._transform_series_to_dataframes()
+        self._concat_pred_with_orig_data()
+
+        return self.df
+
     def get_data(self, **kwargs):
         '''Run API to get data'''
 
@@ -30,16 +48,29 @@ class MainAPI():
         '''Get data and run model to return dataframe with forecast'''
 
         self.get_data()
-        sarimax_run = APISarimax(df = self.df,
+        df_model = self.df.tail(150)
+        sarimax_run = APISarimax(df = df_model,
+                                y = self.column,
                                 old_days=self.old_days, 
                                 next_days=self.next_days,
                                 method = 'log1p')
 
-        df_with_pred = sarimax_run.run_sarimax_pipeline()
+        self.df_with_pred = sarimax_run.run_sarimax_pipeline()
 
-        return df_with_pred
+        return self.df_with_pred
 
     def _filterdf(self, **kwargs):
         '''Filter dataframe to modeling'''
 
         self.df = pd.DataFrame(self.df[self.column])
+
+    def _transform_series_to_dataframes(self, **kwargs):
+        '''Transform into dataframes for modeling'''
+
+        self.df = pd.DataFrame(self.df)
+        self.df_with_pred = pd.DataFrame(self.df_with_pred[f'{self.column}_forecast'])
+
+    def _concat_pred_with_orig_data(self, **kwargs):
+        '''Concat pred dataframe with full data'''
+
+        self.df = pd.concat([self.df, self.df_with_pred], axis=1)
