@@ -1,4 +1,4 @@
-import datetime as dt
+import os
 import pandas as pd
 
 from resources.logger_msg import LoggerMsg
@@ -6,20 +6,12 @@ from domain.use_cases.transformcrypto import TransformCrypto
 
 class APIGetData():
 
-    def __init__(self, start_date, api_key: str, 
-                 crypto: str, market_curr: str, 
-                 **kwargs):
+    def __init__(self, crypto: str, market_curr: str,
+                **kwargs):
 
-        self.api_key = api_key
+        self.api_key = os.environ.get('TOKEN_FIGMA_CRYPTO_KEY')
         self.crypto = crypto
         self.market_curr = market_curr
-
-        if start_date:
-            self.start_date = start_date
-        else:
-            timestamp_now = dt.datetime.now()
-            timestamp_six_months =  dt.timedelta(days=31*12)
-            self.start_date = (timestamp_now - timestamp_six_months).strftime('%Y-%m-%d')
 
         self.logger = LoggerMsg(file_name='APIGetData')
 
@@ -48,17 +40,9 @@ class APIGetData():
 
         trans_crypto_data = TransformCrypto(df = self.df, 
                                             date_col = 'timestamp',
-                                            start_date = self.start_date, 
                                             crypto = self.crypto, 
                                             market_curr = self.market_curr)
 
         df = trans_crypto_data.run()
 
         return df
-
-    def _calculate_datetime(self, **kwargs):
-        '''Calculate the date from the last six months'''
-
-        timestamp_now = dt.datetime.now()
-        timestamp_six_months =  dt.timedelta(days=31*12)
-        return (timestamp_now - timestamp_six_months).strftime('%Y-%m-%d')

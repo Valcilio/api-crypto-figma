@@ -1,4 +1,3 @@
-from datetime import datetime
 import pandas as pd
 
 from domain.entities.currencies import Currencies
@@ -7,15 +6,12 @@ from resources.logger_msg import LoggerMsg
 class TransformCrypto(Currencies):
 
     def __init__(self, date_col: str, crypto: str, df: pd.DataFrame, 
-                 market_curr: str, start_date: str, 
-                 end_date: str = datetime.now().strftime('%Y-%m-%d'), **kwargs):
+                 market_curr: str):
 
         super().__init__(df=df, crypto_curr=crypto, market_curr=market_curr)
 
         self.df = df
         self.date_col = date_col
-        self.start_date = start_date
-        self.end_date = end_date
         self.crypto_market_curr = self.unify_crypto_market_curr()
         self.crypto = self.crypto_market_curr['crypto_curr']
         self.market_curr = self.crypto_market_curr['market_curr']
@@ -34,7 +30,6 @@ class TransformCrypto(Currencies):
     def _run_transformations(self, **kwargs):
         self._clean_cryptocurrency_data()
         self._rename_columns()
-        self._filter_date()
 
     def _run_business_rules(self, **kwargs):
         self.adjust_dtypes()
@@ -42,14 +37,6 @@ class TransformCrypto(Currencies):
 
     def _run_index_transformations(self, **kwargs):
         self._change_to_datetime_index()
-
-    def _filter_date(self, **kwargs):
-        '''Filter dataframe by date passed'''
-
-        self.df = self.df[(self.df[self.date_col] >= self.start_date)
-                         & (self.df[self.date_col] <= self.end_date)]
-
-        return self.df
 
     def _clean_cryptocurrency_data(self, **kwargs):
         '''Filter the dataframe to just contain the important columns to procedure
