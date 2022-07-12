@@ -1,10 +1,10 @@
 import os
 from flask import Flask, request, Response
-from ..domain.gateways.mainapi import MainAPI
+from domain.gateways.mainapi import MainAPI
 
 app = Flask(__name__)
 
-@app.post('/framework_data')
+@app.route('/framework_data', methods=['POST'])
 def crypto_forecast():
     '''Get json with instructions for get data, run pipeline and 
     reponse with json containing all data'''
