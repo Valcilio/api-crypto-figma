@@ -19,18 +19,30 @@ class MainAPI():
     def run(self, **kwargs):
 
         if self.run_model:
-            self.full_data()
+            self._full_data()
         else:
-            self.get_data()
+            self._variable_data()
 
         return self.df
 
-    def full_data(self, **kwargs):
+    def _variable_data(self, **kwargs):
+        '''Return data without forecasting'''
+
+        self.get_data()
+        self._index_str()
+        self._reset_index()
+
+        return self.df
+
+    def _full_data(self, **kwargs):
         '''Return all data'''
 
         self.get_sarimax_pred()
         self._transform_series_to_dataframes()
         self._concat_pred_with_orig_data()
+        self._index_str()
+        self._reset_index()
+        self._rename_index()
 
         return self.df
 
@@ -74,3 +86,18 @@ class MainAPI():
         '''Concat pred dataframe with full data'''
 
         self.df = pd.concat([self.df, self.df_with_pred], axis=1)
+
+    def _index_str(self, **kwargs):
+        '''Change index dtype to str'''
+
+        self.df.index = self.df.index.astype(str)
+
+    def _reset_index(self, **kwargs):
+        '''Reset index to turn in a normal column'''
+
+        self.df = self.df.reset_index()
+
+    def _rename_index(self, **kwargs):
+        '''Rename index to timestamp'''
+
+        self.df.rename(columns={'index':'timestamp'}, inplace=True)

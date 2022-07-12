@@ -10,12 +10,12 @@ framework_json = {'crypto': 'BTC',
                 'next_days': 14}
 
 api_run = MainAPI(framework_json=framework_json)
-api_df = api_run.full_data()
+api_df = api_run._full_data()
 
 def test_columns():
     '''Test if all columns are in the df'''
 
-    columns = ['open', 'open_forecast']
+    columns = ['timestamp', 'open', 'open_forecast']
     print(api_df)
     api_columns = list(api_df.columns)
 
@@ -24,8 +24,10 @@ def test_columns():
 def testing_dtypes():
     '''Test if is returning the correct data types on columns'''
 
+    print(api_df.dtypes)
     api_dtypes_dict = dict(api_df.dtypes)
     correct_dtypes = {
+                'timestamp': np.dtype(object),
                 'open': np.dtype('float64'),
                 'open_forecast': np.dtype('float64'),
                 }
@@ -34,14 +36,4 @@ def testing_dtypes():
 
 def testint_shape():
     '''Test if dataframe is returning correct shape'''
-    assert api_df.shape == (1015, 2)
-
-def testing_dateindex(): # need to be refactored
-    '''Test if is returning the dateindex'''
-
-    df_test = api_df.copy()
-    df_test['test'] = 1
-    df_test = df_test['test'].reset_index().select_dtypes('datetime64[ns]')
-    dateindex_check = df_test.shape[1]
-
-    assert dateindex_check == 1
+    assert api_df.shape == (1015, 3)

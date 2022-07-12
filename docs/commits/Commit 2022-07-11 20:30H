@@ -1,0 +1,12 @@
+API finished and tested.
+
+Warning:
+    - No warnings for now.
+
+Additioned:
+    - apihandler.py: moved to outside of application for better fit with a clean architecture.
+    - domain/gateways/mainapi.py: new methods to transform data for running.
+
+Revised:
+    - domain/gateways/mainapi.py: 
+    - tests/test_mainapi.py: revised and refactored for properly test the mainapi.py.

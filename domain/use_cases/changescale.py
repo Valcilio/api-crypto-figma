@@ -48,7 +48,6 @@ class ChangeScale():
         warnings.filterwarnings('ignore')
 
         df = self.df
-        print(df)
         df[f'{self.y}'] = df[y_nt]
         df = df.drop(y_nt, axis=1)
 
