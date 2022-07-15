@@ -16,4 +16,4 @@ COPY . /app
 
 ENTRYPOINT ["python"]
 
-CMD ["main.py"]
+CMD ["main.py"] #test
