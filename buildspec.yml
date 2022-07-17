@@ -3,7 +3,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - sudo docker build -t figma-crypto-api .
-      - sudo docker run -p 5000:5000 --name crypto_api figma-crypto-api
+      - docker build -t figma-crypto-api .
+      - docker run -p 5000:5000 --name crypto_api figma-crypto-api
 artifacts:
     base-directory: '.'
