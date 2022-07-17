@@ -72,8 +72,6 @@ qtconsole==5.3.1
 QtPy==2.1.0
 requests==2.27.1
 scikit-learn==1.1.1
-scipy==1.8.1
-seaborn==0.11.2
 Send2Trash==1.8.0
 six==1.16.0
 sklearn==0.0
@@ -90,5 +88,3 @@ urllib3==1.26.9
 wcwidth==0.2.5
 webencodings==0.5.1
 Werkzeug==2.1.2
-widgetsnbextension==3.6.0
-yarl==1.7.2
