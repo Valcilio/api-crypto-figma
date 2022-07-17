@@ -7,5 +7,3 @@ phases:
       - sudo docker run -p 5000:5000 --name crypto_api figma-crypto-api
 artifacts:
     base-directory: '.'
-    files:
-    	  - '**/*'
