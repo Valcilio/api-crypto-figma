@@ -30,6 +30,7 @@ jobs:
     # Build and push image to Google Container Registry
     - name: Build
       run: |-
+        gcloud config set project $PROJECT_ID
         gcloud builds submit \
           --quiet \
           --config cloudbuild.yaml \
@@ -38,7 +39,6 @@ jobs:
     # Deploy image to Cloud Run
     - name: Deploy
       run: |-
-        gcloud config set project $PROJECT_ID
         gcloud run deploy "$SERVICE_NAME" \
           --quiet \
           --region "$RUN_REGION" \
