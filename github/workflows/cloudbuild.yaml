@@ -1,0 +1,5 @@
+steps:
+    - name: gcr.io/cloud-builders/docker
+      args: ['build', '--build-arg', 'TOKEN_FIGMA_CRYPTO_KEY=${_TOKEN_FIGMA_CRYPTO_KEY}', '-t', '$_IMAGE_TAG', '.']
+images:
+    - $_IMAGE_TAG

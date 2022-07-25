@@ -8,12 +8,14 @@ ENV request_domain=$TOKEN_FIGMA_CRYPTO_KEY
 
 COPY requirements.txt ./requirements.txt
 
+RUN pip install --upgrade pip
+
 RUN pip install -r requirements.txt
 
-EXPOSE 8501
+EXPOSE 5000
 
 COPY . /app
 
 ENTRYPOINT ["python"]
 
-CMD ["main.py"] #test
+CMD ["main.py"]
