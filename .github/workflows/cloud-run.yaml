@@ -30,8 +30,8 @@ jobs:
     # Build and push image to Google Container Registry
     - name: Build
       run: |-
-        gcloud config set project $PROJECT_ID
         gcloud builds submit \
+          --config set project $PROJECT_ID \
           --quiet \
           --config cloudbuild.yaml \
           --substitutions _TOKEN_FIGMA_CRYPTO_KEY=$TOKEN_FIGMA_CRYPTO_KEY,_IMAGE_TAG=gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
