@@ -1,0 +1,67 @@
+APIGetData || 2022-07-12 08:08:38,317 (INFO) || Initing extract of ETL to obtain BTC historical data in USD value!
+Transform || 2022-07-12 08:08:39,658 (INFO) || Initing data transform of BTC historical data!
+werkzeug || 2022-07-12 08:08:49,677 (INFO) || 127.0.0.1 - - [12/Jul/2022 08:08:49] "POST /framework_data HTTP/1.1" 200 -
+APIGetData || 2022-07-12 08:10:28,048 (INFO) || Initing extract of ETL to obtain BTC historical data in USD value!
+Transform || 2022-07-12 08:10:28,922 (INFO) || Initing data transform of BTC historical data!
+werkzeug || 2022-07-12 08:10:28,939 (INFO) || 127.0.0.1 - - [12/Jul/2022 08:10:28] "POST /framework_data HTTP/1.1" 200 -
+APIGetData || 2022-07-12 08:12:00,413 (INFO) || Initing extract of ETL to obtain BTC historical data in USD value!
+Transform || 2022-07-12 08:12:01,489 (INFO) || Initing data transform of BTC historical data!
+werkzeug || 2022-07-12 08:12:01,500 (INFO) || 127.0.0.1 - - [12/Jul/2022 08:12:01] "POST /framework_data HTTP/1.1" 200 -
+APIGetData || 2022-07-12 08:22:01,615 (INFO) || Initing extract of ETL to obtain BTC historical data in USD value!
+Transform || 2022-07-12 08:22:03,603 (INFO) || Initing data transform of BTC historical data!
+werkzeug || 2022-07-12 08:22:03,619 (INFO) || 127.0.0.1 - - [12/Jul/2022 08:22:03] "POST /framework_data HTTP/1.1" 200 -
+APIGetData || 2022-07-12 08:23:07,487 (INFO) || Initing extract of ETL to obtain BTC historical data in USD value!
+Transform || 2022-07-12 08:23:08,585 (INFO) || Initing data transform of BTC historical data!
+werkzeug || 2022-07-12 08:23:08,606 (INFO) || 127.0.0.1 - - [12/Jul/2022 08:23:08] "POST /framework_data HTTP/1.1" 200 -
+APIGetData || 2022-07-12 08:23:25,172 (INFO) || Initing extract of ETL to obtain BTC historical data in USD value!
+Transform || 2022-07-12 08:23:26,024 (INFO) || Initing data transform of BTC historical data!
+apihandler || 2022-07-12 08:23:36,553 (ERROR) || Exception on /framework_data [POST]
+Traceback (most recent call last):
+  File "/home/valcilio/.pyenv/versions/figma_assus/lib/python3.10/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/valcilio/.pyenv/versions/figma_assus/lib/python3.10/site-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/valcilio/.pyenv/versions/figma_assus/lib/python3.10/site-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/valcilio/.pyenv/versions/figma_assus/lib/python3.10/site-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/valcilio/all_proj/figma_assus/dash_pred_crypto/apihandler.py", line 19, in crypto_forecast
+    df_response = pipeline.run()
+  File "/home/valcilio/all_proj/figma_assus/dash_pred_crypto/domain/gateways/mainapi.py", line 22, in run
+    self._full_data()
+  File "/home/valcilio/all_proj/figma_assus/dash_pred_crypto/domain/gateways/mainapi.py", line 45, in _full_data
+    self._rename_index()
+  File "/home/valcilio/all_proj/figma_assus/dash_pred_crypto/domain/gateways/mainapi.py", line 104, in _rename_index
+    self.df.drop('index', inplace=True)
+  File "/home/valcilio/.pyenv/versions/figma_assus/lib/python3.10/site-packages/pandas/util/_decorators.py", line 311, in wrapper
+    return func(*args, **kwargs)
+  File "/home/valcilio/.pyenv/versions/figma_assus/lib/python3.10/site-packages/pandas/core/frame.py", line 4954, in drop
+    return super().drop(
+  File "/home/valcilio/.pyenv/versions/figma_assus/lib/python3.10/site-packages/pandas/core/generic.py", line 4267, in drop
+    obj = obj._drop_axis(labels, axis, level=level, errors=errors)
+  File "/home/valcilio/.pyenv/versions/figma_assus/lib/python3.10/site-packages/pandas/core/generic.py", line 4311, in _drop_axis
+    new_axis = axis.drop(labels, errors=errors)
+  File "/home/valcilio/.pyenv/versions/figma_assus/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6644, in drop
+    raise KeyError(f"{list(labels[mask])} not found in axis")
+KeyError: "['index'] not found in axis"
+werkzeug || 2022-07-12 08:23:36,562 (INFO) || 127.0.0.1 - - [12/Jul/2022 08:23:36] "[35m[1mPOST /framework_data HTTP/1.1[0m" 500 -
+APIGetData || 2022-07-12 08:24:38,773 (INFO) || Initing extract of ETL to obtain BTC historical data in USD value!
+Transform || 2022-07-12 08:24:39,581 (INFO) || Initing data transform of BTC historical data!
+werkzeug || 2022-07-12 08:24:49,563 (INFO) || 127.0.0.1 - - [12/Jul/2022 08:24:49] "POST /framework_data HTTP/1.1" 200 -
+APIGetData || 2022-07-12 08:29:19,019 (INFO) || Initing extract of ETL to obtain BTC historical data in USD value!
+Transform || 2022-07-12 08:29:20,312 (INFO) || Initing data transform of BTC historical data!
+werkzeug || 2022-07-12 08:29:30,855 (INFO) || 127.0.0.1 - - [12/Jul/2022 08:29:30] "POST /framework_data HTTP/1.1" 200 -
+APIGetData || 2022-07-12 08:49:17,578 (INFO) || Initing extract of ETL to obtain BTC historical data in USD value!
+Transform || 2022-07-12 08:49:18,392 (INFO) || Initing data transform of BTC historical data!
+werkzeug || 2022-07-12 08:49:28,244 (INFO) || 127.0.0.1 - - [12/Jul/2022 08:49:28] "POST /framework_data HTTP/1.1" 200 -
+APIGetData || 2022-07-12 08:50:05,803 (INFO) || Initing extract of ETL to obtain ETH historical data in BRL value!
+Transform || 2022-07-12 08:50:07,261 (INFO) || Initing data transform of ETH historical data!
+werkzeug || 2022-07-12 08:50:16,856 (INFO) || 127.0.0.1 - - [12/Jul/2022 08:50:16] "POST /framework_data HTTP/1.1" 200 -
+APIGetData || 2022-07-23 09:34:58,928 (INFO) || Initing extract of ETL to obtain ETH historical data in BRL value!
+Transform || 2022-07-23 09:35:00,326 (INFO) || Initing data transform of ETH historical data!
+APIGetData || 2022-07-23 09:35:32,020 (INFO) || Initing extract of ETL to obtain ETH historical data in BRL value!
+Transform || 2022-07-23 09:35:33,140 (INFO) || Initing data transform of ETH historical data!
+APIGetData || 2022-07-23 09:35:45,354 (INFO) || Initing extract of ETL to obtain ETH historical data in BRL value!
+Transform || 2022-07-23 09:35:47,136 (INFO) || Initing data transform of ETH historical data!
+APIGetData || 2022-07-23 09:36:11,099 (INFO) || Initing extract of ETL to obtain ETH historical data in BRL value!
+Transform || 2022-07-23 09:36:12,250 (INFO) || Initing data transform of ETH historical data!

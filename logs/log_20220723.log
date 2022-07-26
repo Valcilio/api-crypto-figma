@@ -1,0 +1,8 @@
+APIGetData || 2022-07-23 09:34:58,928 (INFO) || Initing extract of ETL to obtain ETH historical data in BRL value!
+Transform || 2022-07-23 09:35:00,326 (INFO) || Initing data transform of ETH historical data!
+APIGetData || 2022-07-23 09:35:32,020 (INFO) || Initing extract of ETL to obtain ETH historical data in BRL value!
+Transform || 2022-07-23 09:35:33,140 (INFO) || Initing data transform of ETH historical data!
+APIGetData || 2022-07-23 09:35:45,354 (INFO) || Initing extract of ETL to obtain ETH historical data in BRL value!
+Transform || 2022-07-23 09:35:47,136 (INFO) || Initing data transform of ETH historical data!
+APIGetData || 2022-07-23 09:36:11,099 (INFO) || Initing extract of ETL to obtain ETH historical data in BRL value!
+Transform || 2022-07-23 09:36:12,250 (INFO) || Initing data transform of ETH historical data!
