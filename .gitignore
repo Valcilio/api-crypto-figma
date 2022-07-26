@@ -1,5 +1,5 @@
-# Enviroment variables
-env_vars.yaml
+# secret url
+tests/test_data/url.txt
 
 # Byte-compiled / optimized / DLL files
 **__pycache__
