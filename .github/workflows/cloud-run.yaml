@@ -6,7 +6,7 @@ on:
     - main
 
 env:
-  PROJECT_ID: figma-assus
+  PROJECT_ID: ${{ secrets.RUN_PROJECT }}
   RUN_REGION: us-central1
   SERVICE_NAME: figma-crypto-api
   TOKEN_FIGMA_CRYPTO_KEY: ${{ secrets.TOKEN_FIGMA_CRYPTO_KEY }}
