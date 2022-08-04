@@ -4,7 +4,10 @@ import pickle
 
 from domain.gateways.apigetsarimax import APISarimax
 
-df_test_nopred = pickle.load(open('tests/test_data/test_csv_no_pred.pkl', 'rb'))
+df_test_nopred = pd.read_csv('tests/test_data/test_csv_no_pred.csv')
+df_test_nopred = df_test_nopred.rename(columns={'Unnamed: 0':'timestamp'})
+df_test_nopred['timestamp'] = pd.to_datetime(df_test_nopred['timestamp'])
+df_test_nopred = df_test_nopred.set_index('timestamp')
 df_test = pd.DataFrame(df_test_nopred)
 df_test['close'] = np.expm1(df_test['log1p_close'])
 df_test = df_test['close']
