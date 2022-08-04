@@ -24,7 +24,7 @@ def testing_dtypes():
                 'high': np.dtype('float64'),
                 'low': np.dtype('float64'),
                 'close': np.dtype('float64'),
-                'volume': np.dtype('int64')
+                'volume': np.dtype('float64')
                 }
 
     assert api_dtypes_dict == correct_dtypes
