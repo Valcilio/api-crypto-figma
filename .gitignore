@@ -1,7 +1,3 @@
-# directories
-logs
-proj_log.log
-
 # secret url
 tests/test_data/url.txt
 
