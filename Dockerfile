@@ -14,7 +14,15 @@ RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
-COPY . /app
+COPY ./main.py /app/main.py
+
+COPY ./.proj_root /.proj_root
+
+COPY ./tests /app/tests
+
+COPY ./domain /app/domain
+
+COPY ./resources /app/resources
 
 RUN pytest
 

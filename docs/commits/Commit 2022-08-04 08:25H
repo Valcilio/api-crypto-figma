@@ -1,0 +1,12 @@
+Added tests in dockerfile for continuous integration.
+
+Warning:
+    - Updating with a broke step in "tests/test_apigetdata.py" for testing the CI/CD process.
+
+Additioned:
+    - Dockerfile: new command to run pytest and to call just the necessary directories and files.
+    - requirements.txt: added new lib "pytest" for CI/CD process.
+
+Revised:
+    - Dockerfile: excluded command to copy all files.
+    - tests/test_data/test_df.csv: restaured for testing.

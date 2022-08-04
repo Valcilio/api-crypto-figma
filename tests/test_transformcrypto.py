@@ -7,8 +7,8 @@ from domain.use_cases.transformcrypto import TransformCrypto
 df_test = pd.read_csv('tests/test_data/test_df.csv')
 
 crypto = choice(('BTC', 'ETH', 'ADA', 'DOGE', 'XRP'))
-market_curr = choice(('USD', 'BRL', 'CNY', 'EUR', 'GBP'))
 api_key = os.environ.get('TOKEN_FIGMA_CRYPTO_KEY')
+market_curr = choice(('USD', 'BRL', 'CNY', 'EUR', 'GBP'))
 
 orig_cols = ['timestamp', f'open ({market_curr})', f'high ({market_curr})', 
             f'low ({market_curr})', f'close ({market_curr})', 'volume']
@@ -50,17 +50,3 @@ def test_datetimeindex():
     dateindex_check = df.shape[1]
 
     assert dateindex_check == 1
-
-def test_run():
-    '''Testing '''
-
-    df_test = pd.read_csv('tests/test_data/test_df.csv')
-    df_test.columns = orig_cols
-    df_test['dirt'] = 1
-
-    trans_crypto = TransformCrypto(df=df_test, date_col='timestamp', 
-                                crypto=crypto, 
-                                market_curr=market_curr)
-    trans_crypto.run()
-
-    return print(df_test)
