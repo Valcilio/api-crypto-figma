@@ -16,6 +16,8 @@ EXPOSE 5000
 
 COPY . /app
 
+RUN pytest
+
 ENTRYPOINT ["python"]
 
 CMD ["main.py"]
