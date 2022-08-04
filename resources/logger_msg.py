@@ -14,10 +14,6 @@ class LoggerMsg():
         LOG_FLD = set_paths.create_log_fld()
         self.today = dt.datetime.now().strftime('%Y%m%d')
         handlers = [
-        logging.FileHandler(PROJ_DIR / 'proj_log.log'),
-        logging.FileHandler(LOG_FLD /
-                            f'log_{self.today}.log'
-                        ),
         logging.StreamHandler()
         ]
 
