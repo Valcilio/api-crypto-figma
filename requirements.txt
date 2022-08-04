@@ -24,3 +24,4 @@ sklearn==0.0
 statsmodels==0.13.2
 urllib3==1.26.9
 pytest==7.1.2
+pickleshare==0.7.5
